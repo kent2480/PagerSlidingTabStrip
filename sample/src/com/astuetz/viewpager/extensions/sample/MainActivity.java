@@ -37,7 +37,6 @@ import android.view.View;
 import com.astuetz.PagerSlidingTabStrip;
 
 public class MainActivity extends FragmentActivity {
-
 	private final Handler handler = new Handler();
 
 	private PagerSlidingTabStrip tabs;
@@ -58,8 +57,7 @@ public class MainActivity extends FragmentActivity {
 
 		pager.setAdapter(adapter);
 
-		final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
-				.getDisplayMetrics());
+		final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
 		pager.setPageMargin(pageMargin);
 
 		tabs.setViewPager(pager);
@@ -75,21 +73,16 @@ public class MainActivity extends FragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
 		switch (item.getItemId()) {
-
-		case R.id.action_contact:
-			QuickContactFragment dialog = new QuickContactFragment();
-			dialog.show(getSupportFragmentManager(), "QuickContactFragment");
-			return true;
-
+		    case R.id.action_contact:
+                QuickContactFragment dialog = new QuickContactFragment();
+                dialog.show(getSupportFragmentManager(), "QuickContactFragment");
+                return true;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 
 	private void changeColor(int newColor) {
-
 		tabs.setIndicatorColor(newColor);
 
 		// change ActionBar color just if an ActionBar is available
@@ -100,7 +93,6 @@ public class MainActivity extends FragmentActivity {
 			LayerDrawable ld = new LayerDrawable(new Drawable[] { colorDrawable, bottomDrawable });
 
 			if (oldBackground == null) {
-
 				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
 					ld.setCallback(drawableCallback);
 				} else {
@@ -108,7 +100,7 @@ public class MainActivity extends FragmentActivity {
 				}
 
 			} else {
-
+                //TransitionDrawable 實現淡入淡出效果
 				TransitionDrawable td = new TransitionDrawable(new Drawable[] { oldBackground, ld });
 
 				// workaround for broken ActionBarContainer drawable handling on
@@ -119,9 +111,7 @@ public class MainActivity extends FragmentActivity {
 				} else {
 					getActionBar().setBackgroundDrawable(td);
 				}
-
-				td.startTransition(200);
-
+				td.startTransition(200);//改變的間隔
 			}
 
 			oldBackground = ld;
@@ -131,16 +121,12 @@ public class MainActivity extends FragmentActivity {
 			getActionBar().setDisplayShowTitleEnabled(true);
 
 		}
-
 		currentColor = newColor;
-
 	}
 
 	public void onColorClicked(View v) {
-
 		int color = Color.parseColor(v.getTag().toString());
 		changeColor(color);
-
 	}
 
 	@Override
@@ -158,7 +144,7 @@ public class MainActivity extends FragmentActivity {
 
 	private Drawable.Callback drawableCallback = new Drawable.Callback() {
 		@Override
-		public void invalidateDrawable(Drawable who) {
+		public void invalidateDrawable(Drawable who) { //重新繪製背景
 			getActionBar().setBackgroundDrawable(who);
 		}
 
@@ -196,7 +182,5 @@ public class MainActivity extends FragmentActivity {
 		public Fragment getItem(int position) {
 			return SuperAwesomeCardFragment.newInstance(position);
 		}
-
 	}
-
 }

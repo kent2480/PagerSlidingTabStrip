@@ -56,8 +56,7 @@ public class SuperAwesomeCardFragment extends Fragment {
 		FrameLayout fl = new FrameLayout(getActivity());
 		fl.setLayoutParams(params);
 
-		final int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
-				.getDisplayMetrics());
+		final int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
 
 		TextView v = new TextView(getActivity());
 		params.setMargins(margin, margin, margin, margin);
@@ -70,5 +69,4 @@ public class SuperAwesomeCardFragment extends Fragment {
 		fl.addView(v);
 		return fl;
 	}
-
 }
