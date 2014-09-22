@@ -60,8 +60,7 @@ public class MainActivity extends FragmentActivity {
 		final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
 		pager.setPageMargin(pageMargin);
 
-		tabs.setViewPager(pager);
-
+		tabs.setViewPager(pager);//±NviewPager³]µ¹PagerSlidingTabStrip
 		changeColor(currentColor);
 	}
 
